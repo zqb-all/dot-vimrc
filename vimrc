@@ -1,3 +1,4 @@
+set shell=/bin/bash
 source ~/.vim/bundles.vim
 
 " encoding dectection
@@ -8,7 +9,8 @@ filetype plugin indent on
 
 " enable syntax hightlight and completion
 syntax on
-
+" 定义快捷键的前缀，即<Leader>
+let mapleader=";"
 "--------
 " Vim UI
 "--------
@@ -50,12 +52,13 @@ set matchpairs+=<:>                                               " specially fo
 " Default Indentation
 set autoindent
 set smartindent     " indent when
-set tabstop=4       " tab width
-set softtabstop=4   " backspace
-set shiftwidth=4    " indent width
+set tabstop=8       " tab width
+set softtabstop=8   " backspace
+set shiftwidth=8    " indent width
 " set textwidth=79
 " set smarttab
-set expandtab       " expand tab to space
+" set expandtab       " expand tab to space
+set noexpandtab
 
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
@@ -72,6 +75,9 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
+" auto find tags
+set autochdir
+set tags=./tags;/
 "-----------------
 " Plugin settings
 "-----------------
@@ -139,6 +145,15 @@ if executable('coffeetags')
     \ ]
     \ }
 endif
+
+" vim-multiple-cursors
+let g:multi_cursor_start_key='<C-n>'
+let g:multi_cursor_start_word_key='g<C-n>'
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+
 
 " Nerd Tree
 let NERDChristmasTree=0
@@ -237,7 +252,7 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 
 " eggcache vim
-nnoremap ; :
+" nnoremap ; :
 :command W w
 :command WQ wq
 :command Wq wq

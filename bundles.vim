@@ -36,7 +36,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'nathanaelkane/vim-indent-guides'
-
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'junegunn/vim-easy-align'
 "--------------
 " IDE features
 "--------------
