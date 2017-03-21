@@ -15,8 +15,9 @@ let mapleader=";"
 " Vim UI
 "--------
 " color scheme
+let g:solarized_termcolors=256
 set background=dark
-color solarized
+colorscheme solarized
 
 " highlight current line
 au WinLeave * set nocursorline nocursorcolumn
