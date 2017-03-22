@@ -11,13 +11,18 @@ Bundle 'gmarik/vundle'
 "------------------
 " Code Completions
 "------------------
+" 自动补全
 Bundle 'Shougo/neocomplcache'
-Bundle 'mattn/emmet-vim'
+" 方便html
+" Bundle 'mattn/emmet-vim'
+" 括号自动补全
 Bundle 'Raimondi/delimitMate'
+" 上下文自动补全，插入模式下Ctrl+P
 Bundle 'ervandew/supertab'
-" snippets
+" 插入代码块,比如在c文件中插入模式下main+Tab
 Bundle 'garbas/vim-snipmate'
 Bundle 'honza/vim-snippets'
+" tlib_vim和vim-addon-mw-utils是函数库
 "------ snipmate dependencies -------
 Bundle 'MarcWeber/vim-addon-mw-utils'
 Bundle 'tomtom/tlib_vim'
@@ -26,18 +31,26 @@ Bundle 'tomtom/tlib_vim'
 " Fast navigation
 "-----------------
 " Bundle 'edsono/vim-matchit'
+" 快速跳转 <Leader><leader>[w/b/f/t/...]
 Bundle 'Lokaltog/vim-easymotion'
 
 "--------------
 " Fast editing
 "--------------
+" 基于配对的符号编辑
 Bundle 'tpope/vim-surround'
+" 批量注释，选中之后 <leader>cc 加注释 <leader>cu 解开注释 <leader>c<space> 加上/解开注释, 智能判断
 Bundle 'scrooloose/nerdcommenter'
+" F3 类似于git 可回退你的编辑
 Bundle 'sjl/gundo.vim'
+" 对齐 eg:选中后:/Tabularize/= 则按等于号缩进对齐
 Bundle 'godlygeek/tabular'
-Bundle 'nathanaelkane/vim-indent-guides'
+" 高亮缩进
+" Bundle 'nathanaelkane/vim-indent-guides'
+" 多光标编辑 选中 Ctrl+N Ctrl+I
 Bundle 'terryma/vim-multiple-cursors'
-Bundle 'junegunn/vim-easy-align'
+" 快速对齐
+" Bundle 'junegunn/vim-easy-align'
 "--------------
 " IDE features
 "--------------
