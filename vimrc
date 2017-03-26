@@ -203,6 +203,7 @@ endif
 let g:neocomplcache_omni_patterns.erlang = '[a-zA-Z]\|:'
 
 " SuperTab
+let g:SuperTabCrMapping = 0
 " let g:SuperTabDefultCompletionType='context'
 let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
 let g:SuperTabRetainCompletionType=2
@@ -287,4 +288,10 @@ endif
 vnoremap <silent> <C-T> :<C-u>Ydv<CR>
 nnoremap <silent> <C-T> :<C-u>Ydc<CR>
 noremap <leader>yd :<C-u>Yde<CR>
+
+
+cmap shanchukongge % s/\s\+$//g
+map <leader><space> :FixWhitespace<cr>
+
+
 

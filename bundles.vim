@@ -54,37 +54,47 @@ Bundle 'terryma/vim-multiple-cursors'
 "--------------
 " IDE features
 "--------------
+" 文件管理 F6
 Bundle 'scrooloose/nerdtree'
-Bundle 'humiaozuzu/TabBar'
+" 显示Tag，变量名函数名等
 Bundle 'majutsushi/tagbar'
+" 对tagbar的补充
+Bundle 'humiaozuzu/TabBar'
+" 全局搜索,需要apt-get install ack-grep
 Bundle 'mileszs/ack.vim'
+" 模糊搜索
 Bundle 'kien/ctrlp.vim'
+" 使用git
 Bundle 'tpope/vim-fugitive'
+" 状态栏
 Bundle 'Lokaltog/vim-powerline'
+" 语法检查
 Bundle 'scrooloose/syntastic'
+" 标记行尾空格，leader+space 清除
 Bundle 'bronson/vim-trailing-whitespace'
 
 "-------------
 " Other Utils
 "-------------
 " Bundle 'humiaozuzu/fcitx-status'
-Bundle 'nvie/vim-togglemouse'
+" 终端和vim之间切换鼠标焦点
+" Bundle 'nvie/vim-togglemouse'
 
 "----------------------------------------
 " Syntax/Indent for language enhancement
 "----------------------------------------
 "------- web backend ---------
-Bundle '2072/PHP-Indenting-for-VIm'
-"Bundle 'tpope/vim-rails'
-Bundle 'lepture/vim-jinja'
-"Bundle 'digitaltoad/vim-jade'
+" Bundle '2072/PHP-Indenting-for-VIm'
+" Bundle 'tpope/vim-rails'
+" Bundle 'lepture/vim-jinja'
+" Bundle 'digitaltoad/vim-jade'
 
 "------- web frontend ----------
-Bundle 'othree/html5.vim'
+" Bundle 'othree/html5.vim'
 " Bundle 'tpope/vim-haml'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'nono/jquery.vim'
+" Bundle 'pangloss/vim-javascript'
+" Bundle 'kchmck/vim-coffee-script'
+" Bundle 'nono/jquery.vim'
 " Bundle 'groenewege/vim-less'
 " Bundle 'wavded/vim-stylus'
 " Bundle 'nono/vim-handlebars'
@@ -97,9 +107,10 @@ Bundle 'tpope/vim-markdown'
 " Bundle 'tpope/vim-endwise'
 
 "------- Go ----------
-Bundle 'fatih/vim-go'
+" Bundle 'fatih/vim-go'
 
 "------- FPs ------
+" 多彩括号,Lisp等，C没必要
 Bundle 'kien/rainbow_parentheses.vim'
 " Bundle 'wlangstroth/vim-racket'
 " Bundle 'vim-scripts/VimClojure'
@@ -119,6 +130,7 @@ Bundle 'fisadev/fisa-vim-colorscheme'
 "--------------
 " Translate
 "--------------
+" 有道翻译，ctrl+t
 Bundle 'ianva/vim-youdao-translater'
 
 filetype plugin indent on     " required!
