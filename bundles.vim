@@ -58,7 +58,7 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'scrooloose/nerdtree'
 " 显示Tag，变量名函数名等
 Bundle 'majutsushi/tagbar'
-" 顶部显示多文件buffer，alt+序号跳转
+" 顶部显示多文件buffer，alt+序号跳转,:Tbbd关闭
 Bundle 'humiaozuzu/TabBar'
 " 全局搜索,需要apt-get install ack-grep
 Bundle 'mileszs/ack.vim'

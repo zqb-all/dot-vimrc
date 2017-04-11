@@ -220,7 +220,10 @@ nmap <F6> :NERDTreeToggle<cr>
 nmap <F3> :GundoToggle<cr>
 nmap <F4> :IndentGuidesToggle<cr>
 nmap  <D-/> :
+" Ack 代替grep搜索代码
 nnoremap <leader>a :Ack
+" 搜索当前光标所在单词
+nnoremap <leader>aa yaw:Ack <C-R>0<cr>
 nnoremap <leader>v V`]
 
 "------------------
@@ -304,3 +307,12 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
                             " 用空格键来开关折叠
 
 
+" Ctrl+j/k 切换标签页 +x 关闭标签页
+map <C-J> :Tbbp<cr>
+map <C-K> :Tbbn<cr>
+map <C-X> :Tbbd<cr>
+
+" 保存
+map <C-S> :w
+nnoremap <leader>ww :w<cr>
+nnoremap <leader>wq :wq<cr>
