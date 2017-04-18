@@ -77,7 +77,7 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
 " auto find tags
-set autochdir
+" set autochdir
 set tags=./tags;/
 "-----------------
 " Plugin settings
@@ -224,6 +224,7 @@ nmap  <D-/> :
 nnoremap <leader>a :Ack
 " 搜索当前光标所在单词
 nnoremap <leader>aa yaw:Ack <C-R>0<cr>
+vnoremap <leader>aa y:Ack <C-R>0<cr>
 nnoremap <leader>v V`]
 
 "------------------
@@ -245,7 +246,6 @@ autocmd BufReadPost *
 
 " w!! to sudo & write a file
 cmap w!! %!sudo tee >/dev/null %
-
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -316,3 +316,10 @@ map <C-X> :Tbbd<cr>
 map <C-S> :w
 nnoremap <leader>ww :w<cr>
 nnoremap <leader>wq :wq<cr>
+
+" 显示十六进制
+" 最好先用 vim -b xxx 打开文件
+cmap hex %!xxd
+cmap nohex %!xxd -r
+cmap hexon %!xxd
+cmap hexoff %!xxd -r
