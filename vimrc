@@ -61,6 +61,9 @@ set shiftwidth=8    " indent width
 " set expandtab       " expand tab to space
 set noexpandtab
 
+" tpope/vim-markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 autocmd FileType php setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2 textwidth=120
 autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4 textwidth=120
@@ -293,7 +296,7 @@ nnoremap <silent> <C-T> :<C-u>Ydc<CR>
 noremap <leader>yd :<C-u>Yde<CR>
 
 
-cmap shanchukongge % s/\s\+$//g
+cmap shanchukongge % s/[\s 　]\+$//g
 map <leader><space> :FixWhitespace<cr>
 
 set foldenable              " 开始折叠

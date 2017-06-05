@@ -103,6 +103,12 @@ Bundle 'bronson/vim-trailing-whitespace'
 
 "------- markup language -------
 Bundle 'tpope/vim-markdown'
+" Bundle 'suan/vim-instant-markdown'
+" Bundle 'iamcco/markdown-preview.vim'
+" Bundle 'isnowfy/python-vim-instant-markdown'
+Bundle 'MikeCoder/markdown-preview.vim'
+
+
 " Bundle 'timcharper/textile.vim'
 
 "------- Ruby --------
