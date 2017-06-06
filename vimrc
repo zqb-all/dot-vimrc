@@ -141,14 +141,22 @@ if executable('coffeetags')
         \ }
         \ }
 
-  let g:tagbar_type_markdown = {
-    \ 'ctagstype' : 'markdown',
-    \ 'sort' : 0,
-    \ 'kinds' : [
-        \ 'h:sections'
-    \ ]
-    \ }
+  " let g:tagbar_type_markdown = {
+    " \ 'ctagstype' : 'markdown',
+    " \ 'sort' : 0,
+    " \ 'kinds' : [
+        " \ 'h:sections'
+    " \ ]
+    " \ }
 endif
+
+let g:tagbar_type_markdown = {
+        \ 'ctagstype' : 'markdown',
+        \ 'kinds' : [
+                \ 'h:headings',
+        \ ],
+    \ 'sort' : 0
+\ }
 
 " vim-multiple-cursors
 let g:multi_cursor_start_key='<C-n>'
