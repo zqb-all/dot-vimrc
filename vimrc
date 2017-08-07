@@ -236,6 +236,8 @@ nnoremap <leader>a :Ack
 " 搜索当前光标所在单词
 nnoremap <leader>aa yaw:Ack <C-R>0<cr>
 vnoremap <leader>aa y:Ack <C-R>0<cr>
+nnoremap <leader>bb yaw:grep <C-R>0 . -nrI<cr>
+vnoremap <leader>bb y:grep <C-R>0 . -nrI<cr>
 nnoremap <leader>v V`]
 
 "------------------
@@ -307,6 +309,10 @@ noremap <leader>yd :<C-u>Yde<CR>
 cmap shanchukongge % s/[\s 　]\+$//g
 map <leader><space> :FixWhitespace<cr>
 
+" cmap xianshitab set listchars=tab:>-,trail:-
+cmap xianshi set invlist
+cmap buxianshi set nolist
+
 set foldenable              " 开始折叠
 set foldmethod=syntax       " 设置语法折叠
 set foldcolumn=0            " 设置折叠区域的宽度
@@ -334,3 +340,5 @@ cmap hex %!xxd
 cmap nohex %!xxd -r
 cmap hexon %!xxd
 cmap hexoff %!xxd -r
+
+autocmd VimEnter *.md MarkdownPreview
