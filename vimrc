@@ -37,7 +37,7 @@ set nofoldenable                                                  " disable fold
 set confirm                                                       " prompt when existing from an unsaved file
 set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256                                                      " Explicitly tell vim that the terminal has 256 colors "
-set mouse=a                                                       " use mouse in all modes
+set mouse=c                                                       " use mouse in all modes
 set report=0                                                      " always report number of lines changed                "
 set nowrap                                                        " dont wrap lines
 set scrolloff=5                                                   " 5 lines above/below cursor when scrolling
@@ -222,6 +222,8 @@ let g:SuperTabRetainCompletionType=2
 " ctrlp
 set wildignore+=*/tmp/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store  " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_max_depth = 40
+let g:ctrlp_max_files = 0
 
 " Keybindings for plugin toggle
 nnoremap <F2> :set invpaste paste?<CR>
@@ -239,7 +241,8 @@ vnoremap <leader>aa y:Ack <C-R>0<cr>
 nnoremap <leader>bb yaw:grep <C-R>0 . -nrI<cr>
 vnoremap <leader>bb y:grep <C-R>0 . -nrI<cr>
 nnoremap <leader>v V`]
-
+" 内置grep搜索
+nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 "------------------
 " Useful Functions
 "------------------
