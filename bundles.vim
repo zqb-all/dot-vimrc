@@ -12,11 +12,11 @@ Bundle 'gmarik/vundle'
 " Code Completions
 "------------------
 " 自动补全
-Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/neocomplcache'
 " 方便html
 " Bundle 'mattn/emmet-vim'
 " 括号自动补全
-Bundle 'Raimondi/delimitMate'
+" Bundle 'Raimondi/delimitMate'
 " 上下文自动补全，插入模式下Ctrl+P
 Bundle 'ervandew/supertab'
 " 插入代码块,比如在c文件中插入模式下main+Tab
@@ -140,5 +140,11 @@ Bundle 'fisadev/fisa-vim-colorscheme'
 "--------------
 " 有道翻译，ctrl+t
 Bundle 'ianva/vim-youdao-translater'
+
+"YCM
+Bundle 'Valloric/YouCompleteMe'
+
+
+Bundle 'WolfgangMehner/bash-support'
 
 filetype plugin indent on     " required!
