@@ -244,9 +244,8 @@ nnoremap <leader>a :Ack
 nnoremap <leader>aa yaw:Ack <C-R>0<cr>
 vnoremap <leader>aa y:Ack <C-R>0<cr>
 nnoremap <leader>bb yaw:grep <C-R>0 . -nrI<cr>
-vnoremap <leader>bb y:grep <C-R>0 . -nrI<cr>
+vnoremap <leader>bb y:grep <C-R>0 . -nrI<cr>>
 nnoremap <leader>v V`]
-" 内置grep搜索
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 "------------------
 " Useful Functions
@@ -349,5 +348,122 @@ cmap nohex %!xxd -r
 cmap hexon %!xxd
 cmap hexoff %!xxd -r
 
-autocmd VimEnter *.md MarkdownPreview
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+let g:ycm_semantic_triggers = {}
+let g:ycm_semantic_triggers.c = ['->', '.', '(', '[', '&']
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_min_num_of_chars_for_completion=3
+let g:ycm_seed_identifiers_with_syntax=1
 
+
+"=============================================================================================
+"set for YouCompleteMe
+"=======begin=======
+" 安装vundle后安装YouCompleteMe
+"Plugin 'Valloric/YouCompleteMe'
+"设置<leader>的代表含义
+let mapleader=";"
+" 开启 YCM 标签补全引擎
+let g:ycm_collect_identifiers_from_tags_files = 1
+"设置快捷键映射 ;f 为 跳转到定义处
+nnoremap <leader>f :YcmCompleter GoToDeclaration<CR>
+"nnoremap <C-n> :YcmCompleter GoToDeclaration<CR>
+"设置快捷键映射 ;d 为 跳转到声明处
+"nnoremap <C-m> :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
+"设置快捷键映射 ;g 为 跳转到定义和声明处
+"nnoremap <C-g> :YcmCompleter GoTo<CR>
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+nnoremap <leader>x :YcmCompleter FixIt<CR>
+"上下左右键的行为 会显示其他信息
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+" 多跳转是显示列表
+function s:CustomizeYcmQuickFixWindow()
+    " Move the window at the top of the screen.
+    execute "wincmd K"
+    " Set the Window height to 5.
+    execute "5wincmd _"
+endfunction
+autocmd User YcmQuickFixOpened call s:CustomizeYcmQuickFixWindow()
+"我靠,不要设置下面的内容,就可以实现用tab与s-tab选择自动补全列表
+"let g:ycm_key_list_select_completion=['<c-n>']
+"let g:ycm_key_list_select_completion = ['<Down>']
+"let g:ycm_key_list_previous_completion=['<c-p>']
+"let g:ycm_key_list_previous_completion = ['<Up>']
+
+"在错误行显示 >> 标志
+let g:ycm_error_symbol = '>>'
+"在警告行显示 >* 标志
+let g:ycm_warning_symbol = '>*'
+"设置快捷键映射 F4 为 显示编译的警告和错误信息
+nmap <F4> :YcmDiags<CR>
+"让Vim的补全菜单行为与一般IDE一致
+"set completeopt=longest,menu
+"离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"回车即选中当前项
+inoremap <expr> <CR>  pumvisible() ? "\<C-y>":"\<CR>"
+"从第2个键入字符就开始罗列匹配项
+let g:ycm_min_num_of_chars_for_completion=2
+"语法关键字补全
+let g:ycm_seed_identifiers_with_syntax = 1
+"头文件补全
+let g:ycm_complete_in_strings = 1
+"注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+"补全功能在注释中同样有效
+let g:ycm_complete_in_comments = 1
+"结构体，指针等元素的补全(. or ->)
+let g:ycm_key_invoke_completion = '<C-Space>'
+"允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
+let g:ycm_confirm_extra_conf=0
+"默认加载的.ycm_extra_conf.py路径
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
+"inoremap <leader>; <C-x><C-o>
+" 补全内容不以分割子窗口形式出现，只显示补全列表
+set completeopt-=preview
+" 禁止缓存匹配项，每次都重新生成匹配项
+let g:ycm_cache_omnifunc = 0
+"设置补全框前后景色
+"Pmenu 是框色, PmenuSel是框内选中的选项颜色
+"0-黑 1-红 2-绿 3-黄 4-蓝 5-浅紫 6-青 (其他数字没有尝试)
+highlight Pmenu ctermfg=0 ctermbg=5
+highlight PmenuSel ctermfg=0 ctermbg=3
+"=======end : YouCompleteMe=======
+
+" " YouCompleteMe 功能
+" " 补全功能在注释中同样有效
+" let g:ycm_complete_in_comments=0
+" " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
+" let g:ycm_confirm_extra_conf=0
+" " 开启 YCM 基于标签引擎
+" let g:ycm_collect_identifiers_from_tags_files=1
+" " 引入 C++ 标准库tags，这个没有也没关系，只要.ycm_extra_conf.py文件中指定了正确的标准库路径
+" " set tags+=/data/misc/software/misc./vim/stdcpp.tags
+" " YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
+" inoremap <leader>; <C-x><C-o>
+" " 补全内容不以分割子窗口形式出现，只显示补全列表
+" " set completeopt-=preview
+" " 从第二个键入字符就开始罗列匹配项
+" let g:ycm_min_num_of_chars_for_completion=2
+" " 禁止缓存匹配项，每次都重新生成匹配项
+" let g:ycm_cache_omnifunc=0
+" " 语法关键字补全
+" let g:ycm_seed_identifiers_with_syntax=1
+" " 修改对C函数的补全快捷键，默认是CTRL + space，修改为ALT + ;
+" let g:ycm_key_invoke_completion = '<M-;>'
+
+" set completeopt=longest,menu
+" " 设置转到定义处的快捷键为ALT + G，这个功能非常赞
+" nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
+" " 设置按哪个键上屏
+" let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+
+
+
+" autocmd VimEnter *.md MarkdownPreview
