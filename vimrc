@@ -53,6 +53,7 @@ set title                                                         " show file in
 set laststatus=2                                                  " use 2 lines for the status bar
 set matchtime=2                                                   " show matching bracket for 0.2 seconds
 set matchpairs+=<:>                                               " specially for html
+set t_BE=
 " set relativenumber
 
 " Default Indentation
@@ -86,7 +87,8 @@ let g:html_indent_style1 = "inc"
 
 " auto find tags
 " set autochdir
-set tags=./tags;/
+" set tags=./.tags;,.tags
+set tags=./tags;,tags
 "-----------------
 " Plugin settings
 "-----------------
@@ -111,6 +113,29 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:rbpt_max = 16
 autocmd Syntax lisp,scheme,clojure,racket RainbowParenthesesToggle
+
+nnoremap <leader>q :call QuickfixToggle()<cr>
+
+let g:quickfix_is_open = 0
+
+function! QuickfixToggle()
+    if g:quickfix_is_open
+        cclose
+        let g:quickfix_is_open = 0
+    else
+        copen
+        let g:quickfix_is_open = 1
+    endif
+endfunction
+
+
+" vim asyncrun
+let g:asyncrun_open = 8
+" cmap tinamuboot AsyncRun -cwd=$TINA_BUILD_TOP  source build/envsetup.sh; lunch "$TARGET_PRODUCT"_tina;muboot
+:command -nargs=+ Tina :AsyncRun -cwd=$TINA_BUILD_TOP  source ~/.tina.sh; source build/envsetup.sh; lunch "$TARGET_PRODUCT"_tina;"<args>"
+" :command Muboot :AsyncRun -cwd=$TINA_BUILD_TOP  source build/envsetup.sh; lunch "$TARGET_PRODUCT"_tina;muboot
+" :command Muboot_nor :AsyncRun -cwd=$TINA_BUILD_TOP  source build/envsetup.sh; lunch "$TARGET_PRODUCT"_tina;muboot_nor
+" :command Mboot0 :AsyncRun -cwd=$TINA_BUILD_TOP  source build/envsetup.sh; lunch "$TARGET_PRODUCT"_tina;muboot_nor
 
 " tabbar
 let g:Tb_MaxSize = 2
@@ -241,11 +266,26 @@ nmap  <D-/> :
 " Ack 代替grep搜索代码
 nnoremap <leader>a :Ack
 " 搜索当前光标所在单词
-nnoremap <leader>aa yaw:Ack <C-R>0<cr>
-vnoremap <leader>aa y:Ack <C-R>0<cr>
+nnoremap <leader>aa yaw:Ack! <C-R>0<cr>
+vnoremap <leader>aa y:Ack! <C-R>0<cr>
 nnoremap <leader>bb yaw:grep <C-R>0 . -nrI<cr>
-vnoremap <leader>bb y:grep <C-R>0 . -nrI<cr>>
+vnoremap <leader>bb y:grep <C-R>0 . -nrI<cr>
+
+map <leader>aaa :Ack!<Space>
+"高亮搜索关键词
+let g:ackhighlight = 1
+"修改快速预览窗口高度为15
+let g:ack_qhandler = "botright copen 15"
+"在QuickFix窗口使用快捷键以后，自动关闭QuickFix窗口
+let g:ack_autoclose = 1
+"使用ack的空白搜索，即不添加任何参数时对光标下的单词进行搜索，默认值为1，表示开启，置0以后使用空白搜索将返回错误信息
+let g:ack_use_cword_for_empty_search = 1
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep'
+endif
+
 nnoremap <leader>v V`]
+" 内置grep搜索
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 "------------------
 " Useful Functions
@@ -313,6 +353,7 @@ nnoremap <silent> <C-T> :<C-u>Ydc<CR>
 noremap <leader>yd :<C-u>Yde<CR>
 
 
+
 cmap shanchukongge % s/[\s 　]\+$//g
 map <leader><space> :FixWhitespace<cr>
 
@@ -366,7 +407,7 @@ let mapleader=";"
 " 开启 YCM 标签补全引擎
 let g:ycm_collect_identifiers_from_tags_files = 1
 "设置快捷键映射 ;f 为 跳转到定义处
-nnoremap <leader>f :YcmCompleter GoToDeclaration<CR>
+"nnoremap <leader>f :YcmCompleter GoToDeclaration<CR>
 "nnoremap <C-n> :YcmCompleter GoToDeclaration<CR>
 "设置快捷键映射 ;d 为 跳转到声明处
 "nnoremap <C-m> :YcmCompleter GoToDefinition<CR>
@@ -464,6 +505,38 @@ highlight PmenuSel ctermfg=0 ctermbg=3
 " " 设置按哪个键上屏
 " let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
 
+" gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 
+" 调试用
+let g:gutentags_define_advanced_commands = 1
+let $GTAGSLABEL='native'
 
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+
+" 同时开启 ctags 和 gtags 支持：
+let g:gutentags_modules = []
+if executable('ctags')
+	let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+	let g:gutentags_modules += ['gtags_cscope']
+endif
+
+" 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+" 如果使用 universal ctags 需要增加下面一行
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+" 禁用 gutentags 自动加载 gtags 数据库的行为
+let g:gutentags_auto_add_gtags_cscope = 0
+
+" set termguicolors
 " autocmd VimEnter *.md MarkdownPreview

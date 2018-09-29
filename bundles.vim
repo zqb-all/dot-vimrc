@@ -147,4 +147,10 @@ Bundle 'Valloric/YouCompleteMe'
 
 Bundle 'WolfgangMehner/bash-support'
 
+" 自动生成ctags, 待测试
+Bundle 'craigemery/vim-autotag'
+
+" 异步执行，需vim8
+Bundle 'skywind3000/asyncrun.vim'
+
 filetype plugin indent on     " required!
