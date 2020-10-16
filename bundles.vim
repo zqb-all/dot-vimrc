@@ -153,4 +153,11 @@ Bundle 'craigemery/vim-autotag'
 " 异步执行，需vim8
 Bundle 'skywind3000/asyncrun.vim'
 
+
+Bundle 'Yggdroot/LeaderF'
+Bundle 'ludovicchabant/vim-gutentags'
+Bundle 'skywind3000/gutentags_plus'
+Bundle 'skywind3000/vim-preview'
+
+
 filetype plugin indent on     " required!
